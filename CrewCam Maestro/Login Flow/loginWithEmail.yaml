@@ -1,0 +1,52 @@
+# login_with_email.yaml
+# Description: Maestro script to test login functionality with valid email credentials.
+
+appId: com.crewcam
+
+name: Login with Email Flow
+
+tags:
+  - login
+  - email
+  - smoke-test
+
+flows:
+  - login_with_email:
+      steps:
+        # Ensure app is on login screen
+        - launchApp
+
+        # Permission
+        - tapOn:
+            id: com.android.permissioncontroller:id/permission_allow_button
+        # Location Permission
+        - tapOn:
+            id: com.android.permissioncontroller:id/permission_allow_foreground_only_button
+        # Click On Email Button
+        - tapOn:
+            id: Continue with Email
+
+        - waitFor:
+            id: email_input
+            timeout: 5000
+
+        # Click on email placeholder
+        - tapOn:
+            text: Enter your Email
+
+        # Enter email address
+        - inputText:
+            text: kartik.sharma@byldd.com
+
+        # Tap Login button
+        - tapOn:
+            id: Continue
+
+        # Wait for successful login (dashboard)
+        - waitFor:
+            text: Welcome
+            timeout: 10000
+
+        # Assert dashboard is visible
+        - assertVisible:
+            text: Welcome

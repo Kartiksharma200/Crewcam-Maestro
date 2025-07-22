@@ -1,0 +1,31 @@
+appId: com.crewcam
+tags:
+  - Somke Testing
+---
+- launchApp:
+    clearState: true
+
+- tapOn:
+    point: 38%,77%
+
+- tapOn:
+    id: account_name
+
+- waitForAnimationToEnd:
+    timeout: 5000
+
+#Home Screen
+- tapOn: Skip
+
+- tapOn:
+    point: 35%,81%
+
+#Camera Open
+
+- tapOn:
+    point: 44%,88%
+
+- tapOn:
+    point: 17%,6%
+
+- assertVisible: Tags

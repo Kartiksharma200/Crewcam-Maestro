@@ -1,0 +1,41 @@
+appId: com.crewcam
+tags:
+  - Practice
+  - Finds ID
+---
+- launchApp:
+    clearState: true
+
+- assertVisible: Continue with Email
+
+#Login Flow with Mail
+
+- tapOn: Continue with Email
+- assertVisible: Email address
+- tapOn: Enter your Email
+- inputText: kartik.sharma@byldd.com
+- tapOn: Continue
+
+- tapOn:
+    point: 3%,22%
+
+- inputText: 12345
+- tapOn: Verify
+
+- assertVisible:
+    text: Enter Valid OTP!
+    index: 1
+
+#Resend Otp
+
+- tapOn: Resend Code
+
+- tapOn:
+    point: 2%,19%
+
+- waitForAnimationToEnd:
+    timeout: 10000
+
+- inputText: '87133'
+
+- tapOn: Verify

@@ -1,0 +1,79 @@
+appId: com.crewcam
+---
+- launchApp
+
+#Offline Mode Functionality Testing
+
+#Tap on Profile Icon
+- tapOn:
+    text: 'KG' #Change as you Name/Icon
+
+- assertVisible:
+    text: 'Offline Mode'
+
+- tapOn:
+    point: '1030,860'
+
+#Landed to the Offline Mode Page
+
+- assertVisible:
+    text: 'Go Online'
+
+# Check queue
+
+- tapOn:
+    text: Uploads in queue
+
+#Verify queue is open or not
+
+#- assertVisible:
+#text: "Posts in queue:"
+
+- tapOn:
+    text: Uploads in queue
+
+# Open Project details
+
+- tapOn:
+    point: 560,1120
+
+# - assertVisible:
+#     text: New Build Testing
+#     enabled: true
+
+- tapOn:
+    text: Tasks
+
+- tapOn:
+    text: Checklists
+
+# - assertVisible: Untitled template
+
+- tapOn:
+    id: 00000000-0000-0029-ffff-ffff00000b87
+
+- tapOn:
+    id: Create New Post
+
+- repeat:
+    times: 11
+    commands:
+      - tapOn:
+          id: 00000000-0000-0029-ffff-ffff00001043
+
+- tapOn:
+    id: Done
+
+- assertVisible: New Post
+
+- tapOn:
+    id: 00000000-0000-0029-ffff-ffff00001019
+
+- inputRandomText:
+    length: 30
+
+- tapOn:
+    id: Upload
+
+- assertVisible:
+    id: s00000000-0000-0029-ffff-ffff0000106d

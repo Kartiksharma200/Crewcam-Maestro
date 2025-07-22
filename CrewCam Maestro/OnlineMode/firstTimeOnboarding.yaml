@@ -1,0 +1,56 @@
+appId: com.crewcam
+tags:
+  - Verify App Tour
+---
+- launchApp:
+    clearState: false
+
+- tapOn:
+    point: 38%,77%
+
+#- tapOn:
+#    id: account_display_name
+
+#- doubleTapOn:
+#   point: 20%,52%
+
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+#App Tour
+
+- assertVisible: Tap "+" to create a new project.
+- tapOn: Next
+- assertVisible: Tap "New Project" to create a new project.
+- tapOn: Next
+- assertVisible: Add Project name here.
+- tapOn: Next
+- assertVisible: Address will auto populate your gps location. You can update it by typing in an address here.
+- tapOn: Next
+- assertVisible: Tap "Create Project" to save your project.
+- tapOn: Next
+- assertVisible: Tap "Upload post" to create a new post.
+- tapOn: Next
+- assertVisible: Camera will open. Take pictures by clicking on this button.
+- tapOn: Next
+- assertVisible: Number of photos taken this session. Tap to mark up or comment on photos.
+- tapOn: Next
+- assertVisible: Click on "Done" to save the photos you clicked.
+- tapOn: Next
+
+- assertVisible: Tap "Upload" to save your photos to the project.
+- tapOn: Next
+- assertVisible: Tap on "Invite Team" to Invite new team members.
+- tapOn: Next
+- assertVisible: Choose the account type you'd like the invited team member to have.
+- tapOn: Next
+#Check Back Functionality
+- assertVisible: Tap "Copy Code" to copy the invite code.
+- tapOn: Back
+- assertVisible: Choose the account type you'd like the invited team member to have.
+- tapOn: Next
+- assertVisible: Tap "Copy Code" to copy the invite code.
+- tapOn: Next
+- assertVisible: Tap "Share Invite" to share invite link with your team.
+- tapOn: Done

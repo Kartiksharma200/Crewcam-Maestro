@@ -1,0 +1,65 @@
+appId: com.crewcam
+---
+- launchApp
+
+# --- Permissions Handling (Optional - Uncomment if needed) ---
+# - tapOn:
+#     id: com.android.permissioncontroller:id/permission_allow_button
+
+# - tapOn:
+#     id: com.android.permissioncontroller:id/permission_allow_foreground_only_button
+
+# --- Step 1: Click on "Continue with Phone Number" ---
+- tapOn:
+    text: "Continue with Phone Number"
+
+# --- Step 2: Verify phone number input screen is visible ---
+- assertVisible:
+    text: "Enter phone number"
+
+# --- Step 3: Open country code selector ---
+- tapOn:
+    text: "🇺🇸, +1"   # Update this to match the default country code display text
+
+# --- Step 4: Focus the search bar for country ---
+- tapOn:
+    text: "Search your country"   # Or use id/contentDescription if available
+
+# --- Step 5: Search for 'India' ---
+- inputText:
+    text: "india"
+
+# --- Step 6: Wait for filtered list to populate ---
+- waitForAnimationToEnd
+
+# --- Step 7: Tap on "India" in the filtered results ---
+# ⚠️ Replace coordinates with actual position of "India" item after verifying in `maestro dev`
+- tapOn:
+    point: "430,1490"
+
+# --- Step 8: Focus the phone number input field ---
+- tapOn:
+    text: "Enter phone number"  # Optional; only needed if input is not focused automatically
+
+# --- Step 9: Type the phone number ---
+- inputText:
+    text: "9389517814"
+
+# --- Step 10: Tap on the "Continue" button ---
+- tapOn:
+    text: "Continue"
+
+- waitFor:
+    timeout: 10000   # Wait 10 seconds for possible verification step or navigation
+
+# --- Step 11: Validate successful login (Optional) ---
+# - assertVisible:
+#     text: "Welcome"   # Replace with actual text/element on the next screen
+
+
+# Tap on verify button after enter Otp 
+- tapOn:
+     id: "Verify"
+
+- waitFor:
+   timeout: 5000
