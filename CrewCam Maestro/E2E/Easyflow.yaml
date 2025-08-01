@@ -1,0 +1,38 @@
+appId: com.crewcam
+tags:
+  - Login flow
+  - My Profile
+---
+- launchApp:
+    clearState: true
+
+# Login with gamil
+- tapOn:
+    point: 48%,78%
+- tapOn:
+    point: 21%,51%
+
+- assertVisible:
+    id: stepDescription
+
+- tapOn: Skip
+- tapOn:
+    text: 
+    index: 1
+
+- tapOn:
+    text: KG
+    index: 1
+#- action: back
+
+- assertVisible: Personal Settings
+- tapOn: , Personal Settings, 
+
+- extendedWaitUntil:
+    visible: 'Personal Details'
+    timeout: 15000
+
+#Personal Details
+- longPressOn: Enter First Name
+- tapOn: 'Select All'
+- eraseText
