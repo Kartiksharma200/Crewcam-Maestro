@@ -1,65 +1,60 @@
 appId: com.crewcam
+tags:
+  - Sanity Testing
+  - Unit Testing
+  - Onbaording Flow
 ---
-- launchApp
+- launchApp:
+    clearState: true
+- launchApp:
+    permissions:
+      all: allow
+      medialibrary: allow
+- assertVisible: Continue with Phone Number
 
-# --- Permissions Handling (Optional - Uncomment if needed) ---
-# - tapOn:
-#     id: com.android.permissioncontroller:id/permission_allow_button
+#Login Flow with Mail
 
-# - tapOn:
-#     id: com.android.permissioncontroller:id/permission_allow_foreground_only_button
+#Verify validation errors
+- tapOn: Continue with Phone Number
+- assertVisible: Enter phone number
 
-# --- Step 1: Click on "Continue with Phone Number" ---
+- tapOn: 🇺🇸, +1
+- assertVisible: Search your country
+- tapOn: Search your country
+- inputText: India
+- scrollUntilVisible:
+    element:
+      text: India
+- doubleTapOn: 🇮🇳, +91, India
+- assertVisible: 🇮🇳, +91
 - tapOn:
-    text: "Continue with Phone Number"
+    text: Enter phone number
+    index: 1
 
-# --- Step 2: Verify phone number input screen is visible ---
-- assertVisible:
-    text: "Enter phone number"
+- inputText: '9389517813'
+- tapOn: Continue
 
-# --- Step 3: Open country code selector ---
 - tapOn:
-    text: "🇺🇸, +1"   # Update this to match the default country code display text
+    point: 3%,22%
 
-# --- Step 4: Focus the search bar for country ---
-- tapOn:
-    text: "Search your country"   # Or use id/contentDescription if available
-
-# --- Step 5: Search for 'India' ---
-- inputText:
-    text: "india"
-
-# --- Step 6: Wait for filtered list to populate ---
+- inputText: 123456
 - waitForAnimationToEnd
+- tapOn: Verify
 
-# --- Step 7: Tap on "India" in the filtered results ---
-# ⚠️ Replace coordinates with actual position of "India" item after verifying in `maestro dev`
+- assertVisible:
+    text: Enter Valid OTP!
+    index: 1
+
+#Resend Otp
+
+- tapOn: Resend Code
+
 - tapOn:
-    point: "430,1490"
+    point: 2%,19%
 
-# --- Step 8: Focus the phone number input field ---
-- tapOn:
-    text: "Enter phone number"  # Optional; only needed if input is not focused automatically
+- waitForAnimationToEnd:
+    timeout: 10000
 
-# --- Step 9: Type the phone number ---
-- inputText:
-    text: "9389517814"
+- inputText: '87133'
 
-# --- Step 10: Tap on the "Continue" button ---
-- tapOn:
-    text: "Continue"
-
-- waitFor:
-    timeout: 10000   # Wait 10 seconds for possible verification step or navigation
-
-# --- Step 11: Validate successful login (Optional) ---
-# - assertVisible:
-#     text: "Welcome"   # Replace with actual text/element on the next screen
-
-
-# Tap on verify button after enter Otp 
-- tapOn:
-     id: "Verify"
-
-- waitFor:
-   timeout: 5000
+- tapOn: Verify

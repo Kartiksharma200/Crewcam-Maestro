@@ -1,52 +1,64 @@
-# login_with_email.yaml
-# Description: Maestro script to test login functionality with valid email credentials.
-
 appId: com.crewcam
-
-name: Login with Email Flow
-
 tags:
-  - login
-  - email
-  - smoke-test
+  - Practice
+  - Finds ID
+---
+- launchApp:
+    clearState: true
 
-flows:
-  - login_with_email:
-      steps:
-        # Ensure app is on login screen
-        - launchApp
+- assertVisible: Continue with Email
 
-        # Permission
-        - tapOn:
-            id: com.android.permissioncontroller:id/permission_allow_button
-        # Location Permission
-        - tapOn:
-            id: com.android.permissioncontroller:id/permission_allow_foreground_only_button
-        # Click On Email Button
-        - tapOn:
-            id: Continue with Email
+#Login Flow with Mail
 
-        - waitFor:
-            id: email_input
-            timeout: 5000
+- tapOn: Continue with Email
+- assertVisible: Email address
+- tapOn: Enter your Email
+- inputText: kartik.sharmaa@b
+- tapOn: Continue
+- assertVisible:
+    text: Please enter a valid Email!
+    index: 1
 
-        # Click on email placeholder
-        - tapOn:
-            text: Enter your Email
+- tapOn: Enter your Email
 
-        # Enter email address
-        - inputText:
-            text: kartik.sharma@byldd.com
+- longPressOn: 'Enter your Email'
+- tapOn: 'Select All'
+- eraseText
 
-        # Tap Login button
-        - tapOn:
-            id: Continue
+- tapOn: Enter your Email
+- inputText: kartik.sharmaa@byldd.com
+- tapOn: Continue
 
-        # Wait for successful login (dashboard)
-        - waitFor:
-            text: Welcome
-            timeout: 10000
+- extendedWaitUntil:
+    visible: Code sent!
+    timeout: 10000
 
-        # Assert dashboard is visible
-        - assertVisible:
-            text: Welcome
+- assertVisible: We've sent an Email with an activation code to your Email ID kartik.sharmaa@byldd.com
+
+- tapOn:
+    point: 3%,22%
+
+- inputText: 12345
+- tapOn: Verify
+
+- assertVisible:
+    text: Enter Valid OTP!
+    index: 1
+
+#Resend Otp
+
+- tapOn: Resend Code
+
+- extendedWaitUntil:
+    visible: Code sent!
+    timeout: 10000
+
+- waitForAnimationToEnd:
+    timeout: 10000
+
+- tapOn:
+    point: 2%,19%
+
+- inputText: '87133'
+
+- tapOn: Verify

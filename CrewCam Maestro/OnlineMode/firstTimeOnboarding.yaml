@@ -3,13 +3,13 @@ tags:
   - Verify App Tour
 ---
 - launchApp:
-    clearState: false
+    clearState: true
 
 - tapOn:
     point: 38%,77%
 
-#- tapOn:
-#    id: account_display_name
+- tapOn:
+    id: account_display_name
 
 #- doubleTapOn:
 #   point: 20%,52%

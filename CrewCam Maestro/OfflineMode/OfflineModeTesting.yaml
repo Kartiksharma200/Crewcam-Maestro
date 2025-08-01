@@ -1,79 +1,103 @@
 appId: com.crewcam
+
+name: Offline Mode flow
+tags:
+  - Complete Offline Mode
+  - Sanity Testing
+
+# Test flow: Launch app -> Login with direct gamil -> skip the app tour
+#      -> click on the profile icon -> redirect to offline mode.
 ---
-- launchApp
+# Launches the application and clears its state.
 
-#Offline Mode Functionality Testing
+- launchApp:
+    clearState: true
 
-#Tap on Profile Icon
+# Login with google sign up directly with out using OTP
+
+- extendedWaitUntil:
+    visible: 'Continue with Phone Number'
+    timeout: 10000
 - tapOn:
-    text: 'KG' #Change as you Name/Icon
+    point: 48%,78%
 
-- assertVisible:
-    text: 'Offline Mode'
-
-- tapOn:
-    point: '1030,860'
-
-#Landed to the Offline Mode Page
-
-- assertVisible:
-    text: 'Go Online'
-
-# Check queue
+- assertVisible: Choose an account
 
 - tapOn:
-    text: Uploads in queue
+    id: account_name
 
-#Verify queue is open or not
+- extendedWaitUntil:
+    visible: Tap "+" to create a new project.
+    timeout: 10000
 
-#- assertVisible:
-#text: "Posts in queue:"
+- tapOn: Skip
 
-- tapOn:
-    text: Uploads in queue
+- tapOn: KG
 
-# Open Project details
-
-- tapOn:
-    point: 560,1120
-
-# - assertVisible:
-#     text: New Build Testing
-#     enabled: true
+- extendedWaitUntil:
+    visible: My Profile
+    timeout: 10000
 
 - tapOn:
-    text: Tasks
+    point: 67%,19%
 
+#Offline Mode Screen
+
+- extendedWaitUntil:
+    visible: Offline Mode
+    timeout: 10000
+
+- tapOn: New Build Testing
+- assertVisible: New Build Testing
+- back
+
+- tapOn: 28 July 2025
+- assertVisible: 28 July 2025
+- back
+
+- tapOn: Uploads in queue
+- assertVisible: 'Posts in queue: 0'
+- tapOn: Uploads in queue
+
+- assertVisible: Create post
+- tapOn: Create post
+
+- assertVisible: High Resolution
+- tapOn: 
+- assertVisible: Select Image Quality
+
+- assertVisible: Lightning, Smallest image size and fastest upload. Use if concerned about data and speed.
+- assertVisible: High Resolution, Balances high resolution, image quality, size and speed
+- assertVisible: Ultra HD, High resolution and image size but slower uploading speed
+- tapOn: Lightning, Smallest image size and fastest upload. Use if concerned about data and speed.
+- tapOn: Continue
+
+- assertVisible: Lightning
+
+#click images
 - tapOn:
-    text: Checklists
-
-# - assertVisible: Untitled template
-
+    point: 44%,87%
 - tapOn:
-    id: 00000000-0000-0029-ffff-ffff00000b87
-
+    point: 44%,87%
 - tapOn:
-    id: Create New Post
-
-- repeat:
-    times: 11
-    commands:
-      - tapOn:
-          id: 00000000-0000-0029-ffff-ffff00001043
-
+    point: 44%,87%
 - tapOn:
-    id: Done
+    point: 44%,87%
 
+- tapOn: Done
+
+#Create post details
 - assertVisible: New Post
-
-- tapOn:
-    id: 00000000-0000-0029-ffff-ffff00001019
-
-- inputRandomText:
-    length: 30
-
-- tapOn:
-    id: Upload
+- tapOn: , Select project
+- assertVisible: Phase 5 Testing
+- tapOn: Phase 5 Testing
+- tapOn: Enter description here
+- inputText: 'Hello description box'
+- tapOn: Upload
+- assertVisible:
+    text: Post will be uploaded shortly
+    index: 1
+- assertVisible: 'Posts in queue: 1,'
 
 - assertVisible:
-    id: s00000000-0000-0029-ffff-ffff0000106d
+    id: stepDescription

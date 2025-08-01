@@ -17,6 +17,7 @@ tags:
 #Home Screen
 - tapOn: Skip
 
+#New Post
 - tapOn:
     point: 35%,81%
 
@@ -28,4 +29,31 @@ tags:
 - tapOn:
     point: 17%,6%
 
-- assertVisible: Tags
+#Open image container
+- tapOn:
+    point: 10%,88%
+
+# click on Done
+- assertVisible: Done
+- tapOn: Done
+
+# assertion:- New Post
+- assertVisible: New Post
+- tapOn: , Select project
+- tapOn: Search here
+- inputText: New Build Testing
+- assertVisible:
+    text: New Build Testing
+    index: 1
+- tapOn:
+    text: New Build Testing
+    index: 1
+
+# Write description
+- assertVisible: Enter description here
+- inputText: New Build testing project
+
+# Click on Upload button
+
+- tapOn: Upload
+- assertVisible: Grid View

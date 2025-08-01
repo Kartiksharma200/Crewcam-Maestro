@@ -1,0 +1,60 @@
+appId: com.crewcam
+tags:
+  - Unit Testing
+  - Tasks
+  - CheckLists
+  - Report
+  - Notes
+---
+- launchApp:
+    appId: 'com.crewcam'
+    clearState: true
+    clearKeychain: true # optional: clear *entire* iOS keychain
+    stopApp: false # optional (true by default): stop the app before launching it
+    permissions: { all: allow }
+# optional: by default all permissions are allowed,
+# even if clearState: true is passed
+
+#Login Flow with google sign up and skip the app tour.
+
+- tapOn:
+    point: 38%,77%
+
+- tapOn:
+    id: account_display_name
+
+- tapOn:
+    text: skip
+
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+- tapOn: Projects
+
+#Project details page
+
+- extendedWaitUntil:
+    visible: Projects
+    timeout: 10000
+
+- tapOn: Near Me
+- tapOn:
+    point: 81%,73%
+- tapOn:
+    point: 85%,84%
+
+- extendedWaitUntil:
+    visible: Projects Near Me
+    timeout: 10000
+
+- assertVisible: IOS 13 Project, VV5C+3J3 Roorkee, Uttarakhand, India, 5 Posts
+
+- tapOn:
+    text: Get Direction
+    index: 3
+
+- extendedWaitUntil:
+    visible: Mountain View
+    timeout: 10000
+- back
