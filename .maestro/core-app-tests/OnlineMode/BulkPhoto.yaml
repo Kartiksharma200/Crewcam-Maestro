@@ -1,0 +1,59 @@
+appId: com.crewcam
+tags:
+  - Stress Testing
+---
+# -------------------------------
+# Launch the CrewCam Application
+# -------------------------------
+- launchApp:
+    clearState: false
+
+# -------------------------------
+# First Round – Standard Image Quality Upload
+# -------------------------------
+# Open camera
+- tapOn: 
+- tapOn:
+    point: 35%,83%
+- assertVisible: PHOTO
+
+# Open photo capture mode
+- tapOn: 
+- back
+
+# Capture 30 photos in sequence
+- repeat:
+    times: 30
+    commands:
+      - tapOn:
+          point: 44%,87%
+
+# Finish capturing photos
+- tapOn: Done
+- assertVisible: Project Name*
+
+# Select project
+- tapOn: Select project
+- tapOn:
+    text: New Build Testing
+    index: 1
+
+# Enter random description (25 characters)
+- tapOn: Enter description here
+- inputRandomText:
+    length: 25
+
+# Upload the photos
+- tapOn: Upload
+
+# Scroll until a specific date is visible (verifies upload listing)
+- scrollUntilVisible:
+    element:
+      text: July 28, 2025 # Update to target date or selector
+    direction: DOWN
+    timeout: 50000
+    speed: 10
+    visibilityPercentage: 100
+    centerElement: false
+# -------------------------------
+

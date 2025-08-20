@@ -1,0 +1,93 @@
+appId: com.crewcam
+name: Offline Mode
+tags:
+  - complete
+
+---
+# 1️⃣ Launch App Fresh
+- launchApp:
+    clearState: true
+
+# 2️⃣ Wait for Login Screen & Login with Google
+- extendedWaitUntil:
+    visible: 'Continue with Phone Number'
+    timeout: 10000
+- tapOn:
+    point: 48%,78%
+- assertVisible: 'Choose an account'
+- tapOn:
+    id: account_name
+
+# 3️⃣ Wait for Main Dashboard
+- extendedWaitUntil:
+    visible: 'Tap "+" to create a new project.'
+    timeout: 10000
+
+# 4️⃣ Skip the app tour
+- tapOn: Skip
+
+# 5️⃣ Open Profile
+- tapOn:
+    id: profileIcon
+- extendedWaitUntil:
+    visible: 'My Profile'
+    timeout: 10000
+- tapOn:
+    id: offlineToggle
+
+# 6️⃣ Wait for Offline Mode screen
+- extendedWaitUntil:
+    visible: 'Offline Mode'
+    timeout: 10000
+
+# 7️⃣ Verify Offline Mode list items
+- tapOn: 'New Build Testing'
+- assertVisible: 'New Build Testing'
+- back
+- tapOn: '28 July 2025'
+- assertVisible: '28 July 2025'
+- back
+- tapOn: 'Uploads in queue'
+- assertVisible: 'Posts in queue: 0'
+- tapOn: 'Uploads in queue'
+
+# 8️⃣ Create a New Post
+- assertVisible: 'Create post'
+- tapOn: 'Create post'
+
+# 9️⃣ Select Image Quality
+- assertVisible: 'High Resolution'
+- tapOn: ''
+- assertVisible: 'Select Image Quality'
+- assertVisible: 'Lightning, Smallest image size and fastest upload. Use if concerned about data and speed.'
+- assertVisible: 'High Resolution, Balances high resolution, image quality, size and speed'
+- assertVisible: 'Ultra HD, High resolution and image size but slower uploading speed'
+- tapOn: 'Lightning, Smallest image size and fastest upload. Use if concerned about data and speed.'
+- tapOn: 'Continue'
+- assertVisible: 'Lightning'
+
+# 🔟 Capture Multiple Images
+- repeat:
+    times: 4
+    commands:
+      - tapOn:
+          point: 44%,87%
+- tapOn: 'Done'
+
+# 1️⃣1️⃣ Fill Post Details
+- assertVisible: 'New Post'
+- tapOn: ', Select project'
+- assertVisible: 'Phase 5 Testing'
+- tapOn: 'Phase 5 Testing'
+- tapOn: 'Enter description here'
+- inputText: 'Hello description box'
+
+# 1️⃣2️⃣ Upload Post
+- tapOn: 'Upload'
+- assertVisible:
+    text: 'Post will be uploaded shortly'
+    index: 1
+- assertVisible: 'Posts in queue: 1,'
+- assertVisible:
+    id: stepDescriptionh
+- stopApp

@@ -1,0 +1,114 @@
+appId: com.crewcam
+---
+# -------------------------------
+# Launch the CrewCam application
+# -------------------------------
+- launchApp:
+    clearState: true
+
+# Wait until the "Continue with Phone Number" screen appears
+- extendedWaitUntil:
+    visible: Continue with Phone Number
+    timeout: 10000
+
+# -------------------------------
+# Login Process
+# -------------------------------
+# Tap on Google Sign-in button (approximate coordinates)
+- tapOn:
+    point: 38%,77%
+
+# Select Google account by display name ID
+- tapOn:
+    id: account_display_name
+
+# Wait for the home screen to load by checking for "Recent Activity"
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+# Skip onboarding/intro popup
+- tapOn: Skip
+
+# -------------------------------
+# Navigate to the Project Details
+# -------------------------------
+- tapOn: Projects
+- extendedWaitUntil:
+    visible: Projects
+    timeout: 10000
+
+# Open the first project in the list (approximate coordinates)
+- tapOn:
+    point: 2%,16%
+- extendedWaitUntil:
+    visible: Project Details
+    timeout: 10000
+
+# -------------------------------
+# Navigate to the Tasks Section
+# -------------------------------
+- tapOn: Tasks
+- extendedWaitUntil:
+    visible: Create New Task
+    timeout: 10000
+
+# -------------------------------
+# Create a New Task
+# -------------------------------
+- tapOn: Create New Task
+- extendedWaitUntil:
+    visible: New Task
+    timeout: 10000
+
+# Close any extra dialog if shown
+- tapOn: 
+
+# Enter task title
+- tapOn: Enter a suitable title for this task
+- inputText: Automation
+
+# -------------------------------
+# Set Task Priority/Severity
+# -------------------------------
+- tapOn: Low
+- extendedWaitUntil:
+    visible: Severity
+    timeout: 10000
+
+# Select "Moderate" severity
+- tapOn:
+    text: Moderate
+    index: 1
+- extendedWaitUntil:
+    visible: Moderate
+    timeout: 10000
+
+# -------------------------------
+# Add Task Description
+# -------------------------------
+- tapOn: Write a description for this task
+- inputText: Task created by Automation
+
+# -------------------------------
+# Assign Task to a Person
+# -------------------------------
+- tapOn: Search people here, 
+- extendedWaitUntil:
+    visible: Assign to
+    timeout: 10000
+
+- tapOn: Search people here
+- inputText: Kartik
+- tapOn: KartiK Production
+- tapOn:
+    point: 91%,34%
+
+# -------------------------------
+# Save Task Draft
+# -------------------------------
+- tapOn: Save
+- assertVisible:
+    text: KartiK Production
+    index: 1
+# ------------

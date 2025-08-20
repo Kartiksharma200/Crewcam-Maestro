@@ -1,0 +1,167 @@
+appId: com.crewcam
+tags:
+  - Create Checklist
+---
+# -------------------------------
+# Launch the CrewCam application
+# -------------------------------
+- launchApp:
+    clearState: true
+
+# Wait until the "Continue with Phone Number" option is visible (max 10s)
+- extendedWaitUntil:
+    visible: Continue with Phone Number
+    timeout: 10000
+
+# -------------------------------
+# Login Process
+# -------------------------------
+# Tap on the Google Sign-in button (approximate screen coordinates)
+- tapOn:
+    point: 38%,77%
+
+# Select the Google account by display name ID
+- tapOn:
+    id: account_display_name
+
+# Wait for the home screen to load by checking "Recent Activity" (max 10s)
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+# Skip onboarding or any intro popup
+- tapOn: Skip
+
+# -------------------------------
+# Navigate to the Project Details
+# -------------------------------
+- tapOn: Projects
+- extendedWaitUntil:
+    visible: Projects
+    timeout: 10000
+
+# Open the first project from the list (approximate coordinates)
+- tapOn:
+    point: 2%,16%
+- extendedWaitUntil:
+    visible: Project Details
+    timeout: 10000
+
+# -------------------------------
+# Navigate to the Checklists Section
+# -------------------------------
+- tapOn: Checklists
+- extendedWaitUntil:
+    visible: Create New Checklist
+    timeout: 10000
+
+# Start creating a new checklist
+- tapOn: Create New Checklist
+- extendedWaitUntil:
+    visible: Create New Checklist
+    timeout: 10000
+- tapOn: Create New Checklist
+- extendedWaitUntil:
+    visible: Create Checklist
+    timeout: 10000
+
+# Close any extra dialog or popup
+- tapOn: 
+
+# -------------------------------
+# Enter Checklist Name
+# -------------------------------
+- tapOn:
+    text: Checklist name
+    index: 1
+- inputText: Automation Checklist
+- tapOn: Continue
+- extendedWaitUntil:
+    visible: Automation Checklist
+    timeout: 10000
+- tapOn: Continue
+
+# Verify checklist creation UI
+#- assertVisible: Automation Checklist
+- assertVisible: Add Checklist Tasks
+
+# -------------------------------
+# Add Multiple Checklist Tasks
+# -------------------------------
+# Task 1
+- tapOn: Enter here...
+- inputText: First Checklist
+- assertVisible:
+    text: Enter here...
+    index: 1
+
+# Task 2
+- tapOn:
+    text: Enter here...
+    index: 1
+- inputText: Second Checklist
+- assertVisible:
+    text: Enter here...
+    index: 2
+
+# Task 3
+- tapOn:
+    text: Enter here...
+    index: 2
+- inputText: Third Checklist
+- assertVisible:
+    text: Enter here...
+    index: 3
+
+# Task 4
+- tapOn:
+    text: Enter here...
+    index: 3
+- inputText: Fourth Checklist
+- assertVisible:
+    text: Enter here...
+    index: 4
+
+# Task 5
+- tapOn:
+    text: Enter here...
+    index: 4
+- inputText: Fifth Checklist
+
+# -------------------------------
+# Mark Photo Requirement for Last Task
+# -------------------------------
+- tapOn:
+    text: 
+    index: 4
+- assertVisible: Photo Required
+
+# -------------------------------
+# Save Checklist as a Template
+# -------------------------------
+- tapOn:
+    point: 6%,89%
+- assertVisible: Save as Template
+- tapOn: Save as Template
+#- assertVisible:
+#    text: Template created successfully!
+#    index: 1
+
+# -------------------------------
+# Assign Checklist to a Person
+# -------------------------------
+- assertVisible: People
+- tapOn: Search people here
+- inputText: Kartik
+- assertVisible: KartiK Production
+- tapOn: 
+- assertVisible: 
+
+# -------------------------------
+# Final Checklist Creation
+# -------------------------------
+- tapOn: Create
+- assertVisible:
+    text: Checklist created
+    index: 1
+- assertVisible: Automation Checklist

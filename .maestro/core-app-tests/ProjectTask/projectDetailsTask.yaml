@@ -1,0 +1,118 @@
+appId: com.crewcam
+tags:
+  - Create Post
+---
+# -------------------------------
+# Launch the CrewCam application
+# -------------------------------
+- launchApp:
+    clearState: true
+
+# Wait until the "Continue with Phone Number" option is visible (max 10s)
+- extendedWaitUntil:
+    visible: Continue with Phone Number
+    timeout: 10000
+
+# -------------------------------
+# Login Process
+# -------------------------------
+# Tap on the Google Sign-in button (approximate coordinates)
+- tapOn:
+    point: 38%,77%
+
+# Select the Google account by display name ID
+- tapOn:
+    id: account_display_name
+
+# Wait for the home screen to load by checking for "Recent Activity"
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+# Skip onboarding or intro popup if present
+- tapOn: Skip
+
+# -------------------------------
+# Navigate to Project Details
+# -------------------------------
+- tapOn: Projects
+- extendedWaitUntil:
+    visible: Projects
+    timeout: 10000
+
+# Open the first project from the list (approximate coordinates)
+- tapOn:
+    point: 2%,16%
+- extendedWaitUntil:
+    visible: Project Details
+    timeout: 10000
+
+# -------------------------------
+# Create a New Post
+# -------------------------------
+- tapOn: Create New Post
+- extendedWaitUntil:
+    visible: High Resolution
+    timeout: 10000
+
+# Capture multiple photos (5 times)
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+
+# Confirm captured photos
+- tapOn: Done
+- extendedWaitUntil:
+    visible: New Post
+    timeout: 10000
+
+# -------------------------------
+# Add Post Description
+# -------------------------------
+- tapOn: Enter description here
+- inputText: This post created by automation.
+
+# -------------------------------
+# Add More Media to the Post
+# -------------------------------
+- tapOn: Add More
+- extendedWaitUntil:
+    visible: Insert File
+    timeout: 10000
+
+# Select "Take Photo/Video" option
+- tapOn: Take Photo/Video
+- extendedWaitUntil:
+    visible: High Resolution
+    timeout: 10000
+
+# Capture additional photos (4 times)
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+
+# Confirm additional captured media
+- tapOn: Done
+- extendedWaitUntil:
+    visible: New Post
+    timeout: 10000
+
+# -------------------------------
+# Upload the Post
+# -------------------------------
+- tapOn: Upload
+- extendedWaitUntil:
+    visible: In queue
+    timeout: 10000

@@ -1,0 +1,95 @@
+appId: com.crewcam
+tags:
+  - Verify App Tour
+---
+# -------------------------------
+# Launch the CrewCam application
+# -------------------------------
+- launchApp:
+    clearState: true
+
+# -------------------------------
+# Login Process
+# -------------------------------
+# Tap on the Google Sign-in button (approximate coordinates)
+- tapOn:
+    point: 38%,77%
+
+# Select Google account by display name ID
+- tapOn:
+    id: account_display_name
+
+# Wait for the home screen to load by checking for "Recent Activity"
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+# -------------------------------
+# App Tour Walkthrough Verification
+# -------------------------------
+
+# Step 1 – Project Creation Intro
+- assertVisible: Tap "+" to create a new project.
+- tapOn: Next
+
+# Step 2 – Tap "New Project"
+- assertVisible: Tap "New Project" to create a new project.
+- tapOn: Next
+
+# Step 3 – Add Project Name
+- assertVisible: Add Project name here.
+- tapOn: Next
+
+# Step 4 – Project Address Info
+- assertVisible: Address will auto populate your gps location. You can update it by typing in an address here.
+- tapOn: Next
+
+# Step 5 – Create Project
+- assertVisible: Tap "Create Project" to save your project.
+- tapOn: Next
+
+# Step 6 – Upload Post Intro
+- assertVisible: Tap "Upload post" to create a new post.
+- tapOn: Next
+
+# Step 7 – Camera Instructions
+- assertVisible: Camera will open. Take pictures by clicking on this button.
+- tapOn: Next
+
+# Step 8 – Photo Count & Markup
+- assertVisible: Number of photos taken this session. Tap to mark up or comment on photos.
+- tapOn: Next
+
+# Step 9 – Save Photos
+- assertVisible: Click on "Done" to save the photos you clicked.
+- tapOn: Next
+
+# Step 10 – Upload Photos
+- assertVisible: Tap "Upload" to save your photos to the project.
+- tapOn: Next
+
+# Step 11 – Invite Team Members
+- assertVisible: Tap on "Invite Team" to Invite new team members.
+- tapOn: Next
+
+# Step 12 – Choose Account Type
+- assertVisible: Choose the account type you'd like the invited team member to have.
+- tapOn: Next
+
+# Step 13 – Copy Invite Code
+- assertVisible: Tap "Copy Code" to copy the invite code.
+
+# -------------------------------
+# Back Button Verification
+# -------------------------------
+- tapOn: Back
+- assertVisible: Choose the account type you'd like the invited team member to have.
+- tapOn: Next
+
+# Step 14 – Copy Invite Code (Again)
+- assertVisible: Tap "Copy Code" to copy the invite code.
+- tapOn: Next
+
+# Step 15 – Share Invite Link
+- assertVisible: Tap "Share Invite" to share invite link with your team.
+- tapOn: Done

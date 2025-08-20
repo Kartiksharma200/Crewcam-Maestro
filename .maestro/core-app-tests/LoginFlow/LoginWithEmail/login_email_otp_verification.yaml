@@ -1,0 +1,79 @@
+appId: com.crewcam
+tags:
+  - login
+  - email-authentication
+  - otp-verification
+  - validation
+  - resend-otp
+
+---
+# Launch app fresh
+- launchApp:
+    clearState: true
+
+# Start login with Email
+- assertVisible: Continue with Email
+- tapOn: Continue with Email
+
+# Enter invalid email and verify error
+- assertVisible: Email address
+- tapOn: Enter your Email
+- inputText: kartik.sharmaa@b
+- tapOn: Continue
+
+- assertVisible:
+    text: Please enter a valid Email!
+    index: 1
+
+# Clear email input
+- tapOn: Enter your Email
+- longPressOn: Enter your Email
+- tapOn: Select All
+- eraseText
+
+
+# Enter valid email and continue
+- tapOn: Enter your Email
+- inputText: kartik.sharmaa@byldd.com
+- tapOn: Continue
+
+# Wait for code sent confirmation
+- extendedWaitUntil:
+    visible: Code sent!
+    timeout: 10000
+
+- assertVisible: "We've sent an Email with an activation code to your Email ID kartik.sharmaa@byldd.com
+
+# Tap OTP input area
+- tapOn:
+    point: 3%,22%
+
+# Enter invalid OTP and verify error
+- inputText: '21343'
+- tapOn: Verify
+
+- assertVisible:
+    text: Enter Valid OTP!
+    index: 1
+
+# Resend OTP
+- tapOn: Resend Code
+
+- extendedWaitUntil:
+    visible: Code sent!
+    timeout: 10000
+
+- waitForAnimationToEnd:
+    timeout: 10000
+
+# Enter valid OTP
+- tapOn:
+    point: 2%,19%
+
+- inputText: '34123'
+- tapOn: Verify
+
+- assertVisible: Verify Code
+
+# Optionally test resend again
+- tapOn: Resend Code

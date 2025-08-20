@@ -1,0 +1,57 @@
+appId: com.crewcam
+---
+- launchApp:
+    clearState: false
+
+- tapOn:
+    id: profileIcon
+- assertVisible: My Profile
+- tapOn:
+    id: addTimeStampToggle
+- tapOn:
+    id: offlineToggle
+
+- assertVisible: Offline Mode
+
+- tapOn:
+    point: 2%,34%
+
+- assertVisible: Project Details
+- tapOn: Create New Post
+- assertVisible: High Resolution
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn:
+    point: 44%,87%
+- tapOn: Done
+- assertVisible: New Post
+- tapOn: Enter description here
+- inputText: Offline Mode Post
+- tapOn: Upload
+- assertVisible: Project Details
+- assertVisible:
+    text: 1 Posts In Queue
+    index: 1
+- tapOn: 1 Posts In Queue
+- assertVisible: Pending Uploads
+- back
+
+#Task
+- tapOn: Tasks
+- tapOn: 
+- assertVisible: View Task
+- tapOn: Mark it as Completed
+- assertVisible: Mark Completed?
+- tapOn: Complete task
+- tapOn:
+    text: Completed
+    index: 2
+- stopApp

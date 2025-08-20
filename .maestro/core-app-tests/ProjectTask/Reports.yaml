@@ -1,0 +1,62 @@
+appId: com.crewcam
+---
+# -------------------------------
+# Launch the CrewCam application
+# -------------------------------
+- launchApp:
+    clearState: true
+
+# Wait until the "Continue with Phone Number" option is visible (max 10s)
+- extendedWaitUntil:
+    visible: Continue with Phone Number
+    timeout: 10000
+
+# -------------------------------
+# Login Process
+# -------------------------------
+# Tap on the Google Sign-in button (approximate screen coordinates)
+- tapOn:
+    point: 38%,77%
+
+# Select the Google account by display name ID
+- tapOn:
+    id: account_display_name
+
+# Wait for the home screen to load by checking "Recent Activity" (max 10s)
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+# Skip onboarding or any intro popup
+- assertVisible:
+    id: stepDescription
+- tapOn: Skip
+
+# -------------------------------
+# Navigate to the Project Details
+# -------------------------------
+- tapOn: Projects
+- extendedWaitUntil:
+    visible: Projects
+    timeout: 10000
+
+# Open the first project from the list (approximate coordinates)
+- tapOn:
+    point: 2%,16%
+- extendedWaitUntil:
+    visible: Project Details
+    timeout: 10000
+# -------------------------------
+# Navigate to the Reports Section
+# -------------------------------
+- assertVisible: Reports
+- tapOn: Reports
+- assertVisible: Create New Report
+- tapOn: Create New Report
+- assertVisible: Create Report
+- tapOn: 
+- assertVisible: Report Name
+- tapOn: Report Name
+- inputText: Automation Report
+- tapOn: 3 Photos per Page
+- tapOn: Continue

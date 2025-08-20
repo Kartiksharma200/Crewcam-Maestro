@@ -1,0 +1,67 @@
+appId: com.crewcam
+tags:
+  - Sanity Testing
+  - Unit Testing
+  - Onboarding Flow
+  - login
+  - phone-authentication
+  - otp-verification
+
+---
+# Launch app fresh with all permissions allowed
+- launchApp:
+    clearState: true
+- launchApp:
+    permissions:
+      all: allow
+      medialibrary: allow
+
+# Verify initial screen
+- assertVisible: Continue with Phone Number
+
+# Login Flow with Phone Number
+
+# Verify validation error when continuing without input
+- tapOn: Continue with Phone Number
+- assertVisible: Enter phone number
+
+# Select country code India (+91)
+- tapOn: 🇺🇸, +1
+- assertVisible: Search your country
+- tapOn: Search your country
+- inputText: India
+- scrollUntilVisible:
+    element:
+      text: India
+- doubleTapOn: 🇮🇳, +91, India
+- assertVisible: 🇮🇳, +91
+
+# Enter valid phone number
+- tapOn:
+    text: Enter phone number
+    index: 1
+- inputText: '9389517813'
+- tapOn: Continue
+
+# Enter invalid OTP and check error
+- tapOn:
+    point: 3%,22%
+- inputText: '123456'
+- waitForAnimationToEnd
+- tapOn: Verify
+
+- assertVisible:
+    text: Enter Valid OTP!
+    index: 1
+
+# Resend OTP and enter valid OTP
+- tapOn: Resend Code
+
+- tapOn:
+    point: 2%,19%
+
+- waitForAnimationToEnd:
+    timeout: 10000
+
+- inputText: '87133'
+- tapOn: Verify

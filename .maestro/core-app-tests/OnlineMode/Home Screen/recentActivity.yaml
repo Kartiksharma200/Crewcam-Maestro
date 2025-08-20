@@ -1,0 +1,53 @@
+appId: com.crewcam
+tags:
+  - Grid View
+  - List View
+  - Bottom Bar
+---
+- launchApp:
+    clearState: true
+
+# -------------------------------
+# Login Process
+# -------------------------------
+# Tap on the Google Sign-in button (approximate coordinates)
+- tapOn:
+    point: 38%,77%
+
+# Select Google account by display name ID
+- tapOn:
+    id: account_display_name
+
+# Wait for the home screen to load by checking for "Recent Activity"
+- extendedWaitUntil:
+    visible: Recent Activity
+    timeout: 10000
+
+# -------------------------------
+# App Tour Walkthrough Verification
+# -------------------------------
+
+# Step 1 – Project Creation Intro
+- assertVisible: Tap "+" to create a new project.
+- tapOn: Skip
+- tapOn:
+    text: 
+    index: 1
+
+- scrollUntilVisible:
+    element:
+      text: July 17, 2025
+    direction: DOWN
+    timeout: 500000
+    speed: 80
+    visibilityPercentage: 100
+    centerElement: true
+
+- scrollUntilVisible:
+    element:
+      text: Aug 18, 2025
+    direction: UP
+    timeout: 50000
+    speed: 40
+    visibilityPercentage: 100
+    centerElement: false
